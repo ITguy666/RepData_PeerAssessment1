@@ -2,7 +2,9 @@
 title: "Reproducible Research_Peer Assignment 1"
 author: "ITguy666"
 date: "2026-03-15"
-output: html_document
+output:
+  html_document:
+        keep_md:        true
 ---
 For this assignment, we will first download the data from a personal activity monitoring device that collects data at 5 minute intervals throughout the day. The data consists of two months of data from an anonymous individual collected during months of October and November 2012 and include the number of steps taken in 5 minute intervals each day.
 
@@ -168,4 +170,9 @@ ggplot(panel_data,aes(x=interval,y=avg_steps,color=day_type))+
         labs(title="Comparison of Activity Patterns Between Weekday and Weekend",        
                 x="Interval",y="Average Number of Steps")+
                 theme_bw()
+
+```
+
+```{r markdown}
+ knit2html() 
 ```
