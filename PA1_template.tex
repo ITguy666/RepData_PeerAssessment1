@@ -1,0 +1,440 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Reproducible Research\_Peer Assignment 1},
+  pdfauthor={ITguy666},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Reproducible Research\_Peer Assignment 1}
+\author{ITguy666}
+\date{2026-03-15}
+
+\begin{document}
+\maketitle
+
+For this assignment, we will first download the data from a personal
+activity monitoring device that collects data at 5 minute intervals
+throughout the day. The data consists of two months of data from an
+anonymous individual collected during months of October and November
+2012 and include the number of steps taken in 5 minute intervals each
+day.
+
+The variables included in this dataset are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  steps: Number of steps taking in a 5-minute interval (missing values
+  are coded as NA)
+\item
+  date: The date on which the measurement was taken in YYYY-MM-DD format
+\item
+  interval: Identifier for the 5-minute interval in which measurement
+  was taken
+\end{enumerate}
+
+The dataset is stored in a comma-separated-value (CSV) file and there
+are a total of 17,568 observations in this dataset.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{echo =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{warning =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{message =} \ConstantTok{FALSE}\NormalTok{)}
+\DocumentationTok{\#\#Loading libraries and preprocessing the activity data}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(lubridate)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lubridate'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readxl)}
+
+\CommentTok{\#Define file name and url}
+\NormalTok{url }\OtherTok{\textless{}{-}} \StringTok{"https://d396qusza40orc.cloudfront.net/repdata\%2Fdata\%2Factivity.zip"}
+\NormalTok{temp\_zip }\OtherTok{\textless{}{-}} \FunctionTok{tempfile}\NormalTok{(}\AttributeTok{fileext=}\StringTok{".zip"}\NormalTok{)}
+
+\CommentTok{\#Download the file and unzip file}
+\FunctionTok{download.file}\NormalTok{(url,temp\_zip,}\AttributeTok{mode=}\StringTok{"wb"}\NormalTok{)}
+\NormalTok{file\_list }\OtherTok{\textless{}{-}} \FunctionTok{unzip}\NormalTok{(temp\_zip,}\AttributeTok{list=}\ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(file\_list) }\CommentTok{\# To see file name}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           Name Length                Date
+## 1 activity.csv 350829 2014-02-11 10:08:00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{activitydata }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\FunctionTok{unz}\NormalTok{(temp\_zip,}\StringTok{"activity.csv"}\NormalTok{))}
+\FunctionTok{unlink}\NormalTok{(temp\_zip)}
+\FunctionTok{nrow}\NormalTok{(activitydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 17568
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(activitydata)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "steps"    "date"     "interval"
+\end{verbatim}
+
+After downloading the data, we will next look at the first question in
+what is the mean total number of steps taken per day with the following
+analyses: 1. Calculate total number of steps taken per day 2. Make a
+histogram of the total number of steps taken each day 3. Calculate the
+mean and median of total number of steps taken per day
+
+Solution: To tackle the above, we will first need to convert the date
+into a format that can be analysed using as.Date function. Following
+which, we will need to group the number of steps per day and sum up the
+data for each day. This can be done in creating another
+``totalsteps\_perday'' dataset using group\_by date function and then
+pipe it to summarise using summarize function to sum up the steps taken
+in another variable within the dataset called ``total\_steps''. Latter
+will denote the total steps in a day and each row in the dataset is one
+day. We will also use the na.rm = TRUE to ignore missing values. Next,
+use the function hist() on totalsteps\_perday\$total\_steps to create
+the histogram.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{echo =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{warning =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{message =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\#Convert Date format}
+\NormalTok{activitydata}\SpecialCharTok{$}\NormalTok{date }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(activitydata}\SpecialCharTok{$}\NormalTok{date,}\AttributeTok{format=}\StringTok{"\%Y{-}\%m{-}\%d"}\NormalTok{)}
+
+\CommentTok{\#Calculate the total steps per day by using group\_by date and then use summarise to sum up the total steps for each day}
+\NormalTok{totalsteps\_perday }\OtherTok{\textless{}{-}}\NormalTok{ activitydata }\SpecialCharTok{\%\textgreater{}\%} 
+                        \FunctionTok{group\_by}\NormalTok{(date) }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{summarize}\NormalTok{(}\AttributeTok{total\_steps =} \FunctionTok{sum}\NormalTok{(steps,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))}
+
+\CommentTok{\#Plot Histogram}
+\FunctionTok{hist}\NormalTok{(totalsteps\_perday}\SpecialCharTok{$}\NormalTok{total\_steps,}\AttributeTok{main=}\StringTok{"Total Steps Taken Each Day"}\NormalTok{,}
+        \AttributeTok{xlab=}\StringTok{"Steps"}\NormalTok{,}
+        \AttributeTok{col=}\StringTok{"steelblue"}\NormalTok{,}
+        \AttributeTok{breaks=}\DecValTok{20}\NormalTok{, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{PA1_template_files/figure-html/question 1-1.png}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compute Mean and Median}
+\NormalTok{mean\_stepsperday }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(totalsteps\_perday}\SpecialCharTok{$}\NormalTok{total\_steps,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{median\_stepsperday }\OtherTok{\textless{}{-}} \FunctionTok{median}\NormalTok{(totalsteps\_perday}\SpecialCharTok{$}\NormalTok{total\_steps,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(mean\_stepsperday)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9354.23
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(median\_stepsperday)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10395
+\end{verbatim}
+
+Next, we will study the data to derive the answers to the below: 1) What
+is the average daily activity pattern? 2) Make a time series plot of the
+5-minute interval (x-axis) and the average number of steps taken,
+averaged across all days (y-axis) 3) Which 5-minute interval, on average
+across all the days in the dataset, contains the maximum number of
+steps?
+
+Solution: To solve the above, we will also use the group\_by and
+summarize functions to create a dataset ``Average\_daily\_pattern'' that
+groups by interval and then take the mean of the steps within the
+interval to create a new variable ``avg\_steps'' for this. Similarly,
+remove NA values by setting na.rm = TRUE.Then plot interval and
+avg\_steps in the ``Average\_daily\_pattern'' dataset.To calculate the
+maximum steps, we use the filter function to detect the datapoint
+whereby avg\_steps is the max(avg\_steps) and then come back with the
+corresponding interval which is 835.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{echo =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{warning =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{message =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# Average steps per 5{-}minute interval}
+\NormalTok{Average\_daily\_pattern }\OtherTok{\textless{}{-}}\NormalTok{ activitydata }\SpecialCharTok{\%\textgreater{}\%}
+                                \FunctionTok{group\_by}\NormalTok{(interval) }\SpecialCharTok{\%\textgreater{}\%}
+                                \FunctionTok{summarize}\NormalTok{(}\AttributeTok{avg\_steps =} \FunctionTok{mean}\NormalTok{(steps,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))}
+\CommentTok{\#Time series plot}
+\FunctionTok{plot}\NormalTok{(Average\_daily\_pattern}\SpecialCharTok{$}\NormalTok{interval,}
+\NormalTok{     Average\_daily\_pattern}\SpecialCharTok{$}\NormalTok{avg\_steps,}
+        \AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{,}\AttributeTok{iwd =} \DecValTok{2}\NormalTok{, }\AttributeTok{main =} \StringTok{"Average Daily Activity Pattern By 5{-}minute Intervals"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"5{-}minute Interval"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Average Steps"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{PA1_template_files/figure-html/question 2-1.png}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Find 5{-}minute interval with maximum number of steps}
+\NormalTok{max\_interval }\OtherTok{\textless{}{-}}\NormalTok{ Average\_daily\_pattern }\SpecialCharTok{\%\textgreater{}\%} \FunctionTok{filter}\NormalTok{(avg\_steps}\SpecialCharTok{==}\FunctionTok{max}\NormalTok{(avg\_steps))}
+\FunctionTok{print}\NormalTok{(max\_interval}\SpecialCharTok{$}\NormalTok{interval)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 835
+\end{verbatim}
+
+Imputing missing values Note that there are a number of days/intervals
+where there are missing values (coded as NA). The presence of missing
+days may introduce bias into some calculations or summaries of the data.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Calculate and report the total number of missing values in the dataset
+  (i.e.~the total number of rows with NAs)
+\item
+  Devise a strategy for filling in all of the missing values in the
+  dataset. For example, you could use the mean/median for that day, or
+  the mean for that 5-minute interval, etc.
+\item
+  Create a new dataset that is equal to the original dataset but with
+  the missing data filled in.
+\item
+  Make a histogram of the total number of steps taken each day and
+  Calculate and report the mean and median total number of steps taken
+  per day. Do these values differ from the estimates from the first part
+  of the assignment? What is the impact of imputing missing data on the
+  estimates of the total daily number of steps?
+\end{enumerate}
+
+Solution: To resolve the above, we use sum(is.na) to count the total
+NAs. Following which, we will create a new variable
+``activity\_imputed'' that imputes the missing values by first joining
+the raw activity data with average daily pattern and then use mutate to
+create a new variable using ifelse that takes the value of
+``avg\_steps'' if the value is NA or missing. Following which, we remove
+the avg\_step field from the dataset to keep it clean. With this
+dataset, we recompute the daily steps using group by and summarise
+functions. And then plot the histogram, mean and median.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\SpecialCharTok{::}\NormalTok{opts\_chunk}\SpecialCharTok{$}\FunctionTok{set}\NormalTok{(}\AttributeTok{echo =} \ConstantTok{TRUE}\NormalTok{,}\AttributeTok{warning =} \ConstantTok{FALSE}\NormalTok{, }\AttributeTok{message =} \ConstantTok{FALSE}\NormalTok{)}
+\CommentTok{\# Count total NAs}
+\NormalTok{total\_na }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(activitydata}\SpecialCharTok{$}\NormalTok{steps))}
+\FunctionTok{paste0}\NormalTok{(}\StringTok{"The number of missing values are "}\NormalTok{,total\_na,}\StringTok{" ."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "The number of missing values are 2304 ."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Create a new dataset and fill NAs as average of steps }
+\NormalTok{activity\_imputed }\OtherTok{\textless{}{-}}\NormalTok{ activitydata }\SpecialCharTok{\%\textgreater{}\%}
+                        \FunctionTok{left\_join}\NormalTok{(Average\_daily\_pattern, }\AttributeTok{by=}\StringTok{"interval"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+                        \FunctionTok{mutate}\NormalTok{(}\AttributeTok{steps =} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(steps),avg\_steps,steps)) }\SpecialCharTok{\%\textgreater{}\%}
+                        \FunctionTok{select}\NormalTok{ (}\SpecialCharTok{{-}}\NormalTok{avg\_steps)}
+
+\CommentTok{\#Recompute total steps per day with imputed data}
+\NormalTok{imputed\_steps\_per\_day }\OtherTok{\textless{}{-}}\NormalTok{ activity\_imputed }\SpecialCharTok{\%\textgreater{}\%} 
+                        \FunctionTok{group\_by}\NormalTok{(date) }\SpecialCharTok{\%\textgreater{}\%}
+                        \FunctionTok{summarize}\NormalTok{(}\AttributeTok{total\_steps =} \FunctionTok{sum}\NormalTok{(steps,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{))}
+
+\CommentTok{\#Histogram for imputed data}
+\FunctionTok{hist}\NormalTok{(imputed\_steps\_per\_day}\SpecialCharTok{$}\NormalTok{total\_steps,}
+     \AttributeTok{main=}\StringTok{"Total Steps Per Day Using Imputed Data for NAs"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Steps"}\NormalTok{,}
+     \AttributeTok{col =} \StringTok{"lightgreen"}\NormalTok{,}
+     \AttributeTok{breaks =} \DecValTok{20}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{PA1_template_files/figure-html/question 3-1.png}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Compute Mean and Median of imputed data}
+\NormalTok{mean\_imputed\_stepsperday }\OtherTok{\textless{}{-}} 
+        \FunctionTok{mean}\NormalTok{(imputed\_steps\_per\_day}\SpecialCharTok{$}\NormalTok{total\_steps,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{median\_imputed\_stepsperday }\OtherTok{\textless{}{-}} 
+        \FunctionTok{median}\NormalTok{(imputed\_steps\_per\_day}\SpecialCharTok{$}\NormalTok{total\_steps,}\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(mean\_imputed\_stepsperday)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10766.19
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(median\_imputed\_stepsperday)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10766.19
+\end{verbatim}
+
+Are there differences in activity patterns between weekdays and
+weekends? For this part the weekdays() function may be of some help
+here. Use the dataset with the filled-in missing values for this part.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Create a new factor variable in the dataset with two levels b
+\end{enumerate}
+
+\end{document}
